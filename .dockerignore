@@ -1,0 +1,9 @@
+.git
+.venv
+.pylibs
+__pycache__
+*.pyc
+.pytest_cache
+tests
+*.zip
+.DS_Store

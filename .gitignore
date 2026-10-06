@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# 本地依赖目录（容器/CI 用 requirements.txt 安装）
+.pylibs/
+.venv/
+venv/
+
+# 杂项
+*.zip
+.DS_Store
