@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>教程离线封包工具</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>教程离线封包工具</h1>
+  <p>面向资料管理员：上传含入口 <code>index.html</code> 的教程 ZIP，校验、重写并导出可离线浏览的封包。</p>
+</header>
+<main>
+  <section class="card">
+    <h2>1. 上传 ZIP</h2>
+    <div id="drop" class="drop">
+      <p>将 ZIP 文件拖到此处，或</p>
+      <input type="file" id="file" accept=".zip,application/zip,application/x-zip-compressed">
+      <p id="file-name" class="file-name"></p>
+    </div>
+    <ul class="limits">
+      <li>压缩 ≤ 10 MB，解压 ≤ 30 MB</li>
+      <li>≤ 12 个 UTF-8 HTML/CSS 文件，≤ 30 张 PNG/JPEG</li>
+      <li>仅处理 <code>a[href]</code>、<code>img[src]</code>、<code>link[rel=stylesheet][href]</code> 与 CSS <code>url()</code></li>
+      <li>脚本、表单、内联样式、srcset、CSS @import 将禁止下载</li>
+    </ul>
+    <button id="analyze" disabled>开始分析</button>
+  </section>
+
+  <section class="card hidden" id="result">
+    <h2>2. 分析报告</h2>
+    <div id="stats" class="stats"></div>
+    <div id="banner"></div>
+    <h3>阻断问题</h3>
+    <div id="errors"></div>
+    <h3>提示</h3>
+    <div id="infos"></div>
+  </section>
+
+  <section class="card hidden" id="download-card">
+    <h2>3. 下载封包</h2>
+    <p>产物复检通过：所有内链与资源均可从入口 <code>index.html</code> 离线到达。</p>
+    <p><a id="download" class="button" href="#" download>下载 offline-tutorial.zip</a></p>
+    <details>
+      <summary>导出文件清单</summary>
+      <ul id="exported" class="exported"></ul>
+    </details>
+  </section>
+</main>
+<footer>仅导出从入口可达的文件；除 URL 改写外，HTML/CSS 原文字节保持不变。</footer>
+<script src="app.js"></script>
+</body>
+</html>
